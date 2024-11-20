@@ -25,23 +25,29 @@ const EmailListItem = ({
   };
 
   return (
-    <div
+    <article
       onClick={handleSelect}
       className={`flex items-center p-4 rounded cursor-pointer ${
         isSelected ? "bg-blue-100" : email.isRead ? "bg-filterBtn" : "bg-white"
       } ${!isOnHomepage ? "border border-accent" : ""}`}
     >
       <Avatar name={email.from.name} />
+
       <div className="ml-4 flex-1">
-        <h5>
-          From:{" "}
-          <span className="font-medium">{`${email.from.name} <${email.from.email}>`}</span>
-        </h5>
-        <span className="text-[15px]">Subject: {email.subject}</span>
+        <header>
+          <h5>
+            From:{" "}
+            <span className="font-medium">{`${email.from.name} <${email.from.email}>`}</span>
+          </h5>
+        </header>
+
+        <h6 className="text-[15px]">Subject: {email.subject}</h6>
+
         <p className="text-sm text-gray-700 mb-1">{email.short_description}</p>
-        <p className="text-xs text-gray-500">
+
+        <time className="text-xs text-gray-500">
           {formatDateTime(new Date(email.date))}
-        </p>
+        </time>
       </div>
 
       <button
@@ -51,20 +57,25 @@ const EmailListItem = ({
         className={`ml-4 text-xl ${
           email.isFavorite ? "text-yellow-500" : "text-gray-500"
         }`}
+        aria-label={
+          email.isFavorite ? "Remove from favorites" : "Add to favorites"
+        }
       >
         {email.isFavorite ? "★" : "☆"}
       </button>
+
       {showToggleReadButton && (
         <button
           onClick={handleToggleRead}
           className={`ml-4 px-3 py-1 text-sm rounded ${
             email.isRead ? "bg-accent text-white" : "bg-gray-200 text-black"
           }`}
+          aria-label={email.isRead ? "Mark as Unread" : "Mark as Read"}
         >
           {email.isRead ? "Mark as Unread" : "Mark as Read"}
         </button>
       )}
-    </div>
+    </article>
   );
 };
 

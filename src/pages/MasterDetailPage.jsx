@@ -11,14 +11,14 @@ const MasterDetailPage = () => {
 
   return (
     <div className="flex h-screen">
-      <div className="w-[40%] bg-background border-r overflow-y-auto">
+      <aside className="w-[40%] bg-background border-r overflow-y-auto">
         <EmailList
           onEmailSelect={handleEmailSelect}
           showToggleReadButton={true}
         />
-      </div>
+      </aside>
 
-      <div className="w-[60%] bg-background">
+      <main className="w-[60%] bg-background">
         {selectedEmailId ? (
           <EmailBody emailId={selectedEmailId} />
         ) : (
@@ -26,7 +26,7 @@ const MasterDetailPage = () => {
             Select an email to view its details.
           </div>
         )}
-      </div>
+      </main>
     </div>
   );
 };

@@ -49,9 +49,9 @@ const EmailBody = ({ emailId }) => {
       </p>
 
       {loading ? (
-        <div className="mt-4 text-text">Loading email body...</div>
+        <span className="mt-4 text-text">Loading email body...</span>
       ) : error ? (
-        <div className="mt-4 text-accent">{error}</div>
+        <span className="mt-4 text-accent">{error}</span>
       ) : (
         <div
           className="mt-4 prose"

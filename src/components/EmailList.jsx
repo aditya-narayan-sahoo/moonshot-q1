@@ -40,26 +40,30 @@ const EmailList = ({ onEmailSelect, showToggleReadButton = false }) => {
   }
 
   return (
-    <div>
-      <ul className="divide-y divide-filterBtn">
-        {emails.length === 0 ? (
-          <li className="p-4 text-text">No emails available.</li>
-        ) : (
-          emails.map((email) => (
-            <li key={email.id} className="p-4">
-              <EmailListItem
-                email={email}
-                isSelected={false}
-                onEmailSelect={handleSelect}
-                showToggleReadButton={showToggleReadButton}
-              />
+    <main>
+      <section>
+        <ul className="divide-y divide-filterBtn" role="list">
+          {emails.length === 0 ? (
+            <li className="p-4 text-text" role="listitem">
+              No emails available.
             </li>
-          ))
-        )}
-      </ul>
+          ) : (
+            emails.map((email) => (
+              <li key={email.id} className="p-4" role="listitem">
+                <EmailListItem
+                  email={email}
+                  isSelected={false}
+                  onEmailSelect={handleSelect}
+                  showToggleReadButton={showToggleReadButton}
+                />
+              </li>
+            ))
+          )}
+        </ul>
+      </section>
 
       {/* Pagination Controls */}
-      <div className="flex justify-between p-4">
+      <nav aria-label="Email pagination" className="flex justify-between p-4">
         <button
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
@@ -85,8 +89,8 @@ const EmailList = ({ onEmailSelect, showToggleReadButton = false }) => {
         >
           Next
         </button>
-      </div>
-    </div>
+      </nav>
+    </main>
   );
 };
 
